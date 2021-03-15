@@ -4,14 +4,6 @@
 #include <tuple>
 #include "include/complex_number.h"
 
-TEST(Volkova_Nastya_ComplexNumberTest, CopyConstructor) {
-    ComplexNumber numb(2, 9);
-    ComplexNumber numb_copy(numb);
-
-    EXPECT_EQ(numb.getRe(), numb_copy.getRe());
-    EXPECT_EQ(numb.getIm(), numb_copy.getIm());
-}
-
 TEST(Volkova_Nastya_ComplexNumberTest, AssignmentOperator) {
     double numb_re = 1.5;
     double numb_im  = -2.8;
