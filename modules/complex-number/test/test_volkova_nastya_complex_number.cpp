@@ -27,8 +27,8 @@ TEST(Volkova_Nastya_ComplexNumberTest, AssignmentOperator) {
     EXPECT_EQ(numb1.getIm(), numb3.getIm());
 }
 
-typedef testing::TestWithParam<std::tuple< double, double, double, double, double, double>>
-        Volkova_Parametrized;
+typedef testing::TestWithParam<std::tuple< double, double, double,
+        double, double, double>> Volkova_Parametrized;
 
 TEST_P(Volkova_Parametrized, Sum) {
     ComplexNumber numb1(std::get<0>(GetParam()), std::get<1>(GetParam()));
