@@ -54,6 +54,6 @@ INSTANTIATE_TEST_CASE_P(/**/, Volkova_Parametrized, testing::Combine(
   testing::Values(2.0, 4.0),
   testing::Values(1.0, 1.0),
   testing::Values(8.5, 6.5),
-  testing::Values(8.5, 5.5),
-  testing::Values(1.5, 2.5)
+  testing::Values(8.5),
+  testing::Values(1.5)
 ));
