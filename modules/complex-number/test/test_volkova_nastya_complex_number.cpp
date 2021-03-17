@@ -4,7 +4,7 @@
 #include <tuple>
 #include "include/complex_number.h"
 
-TEST(Volkova_Nastya_ComplexNumberTest, AssignmentOperator) {
+TEST(Volkova_Nastya_ComplexNumberTest, ComplexNumberCreation) {
     double numb_re = 1.5;
     double numb_im  = -2.8;
     ComplexNumber numb1(numb_re, numb_im);
@@ -13,10 +13,10 @@ TEST(Volkova_Nastya_ComplexNumberTest, AssignmentOperator) {
     numb3.setRe(numb_re);
     numb3.setIm(numb_im);
 
-    EXPECT_EQ(numb1.getRe(), numb2.getRe());
-    EXPECT_EQ(numb1.getIm(), numb2.getIm());
-    EXPECT_EQ(numb1.getRe(), numb3.getRe());
-    EXPECT_EQ(numb1.getIm(), numb3.getIm());
+    ASSERT_EQ(numb1.getRe(), numb2.getRe());
+    ASSERT_EQ(numb1.getIm(), numb2.getIm());
+    ASSERT_EQ(numb1.getRe(), numb3.getRe());
+    ASSERT_EQ(numb1.getIm(), numb3.getIm());
 }
 
 typedef testing::TestWithParam<std::tuple< double, double, double,
@@ -32,7 +32,7 @@ TEST_P(Volkova_Parametrized, Sum) {
     ComplexNumber res3 = res2 - res1;
     ComplexNumber res4 = res3 + numb2;
 
-    EXPECT_EQ(res4, numb3);
+    ASSERT_EQ(res4, numb3);
 }
 
 TEST_P(Volkova_Parametrized, MultiplicationAndSum) {
@@ -46,7 +46,7 @@ TEST_P(Volkova_Parametrized, MultiplicationAndSum) {
     ComplexNumber res4 = numb2 + numb3;
     ComplexNumber res5 = numb1 * res4;
 
-    EXPECT_EQ(res3, res5);
+    ASSERT_EQ(res3, res5);
 }
 
 INSTANTIATE_TEST_CASE_P(/**/, Volkova_Parametrized, testing::Combine(
