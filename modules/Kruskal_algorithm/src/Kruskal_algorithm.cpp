@@ -2,7 +2,8 @@
 
 #include "include/Kruskal_algorithm.h"
 
-Graph::Graph(int n) {
+Graph::Graph(int size) {
+	n = size;
     parent.resize(n,0);
     G.clear();
     MST.clear();
@@ -48,16 +49,18 @@ std::vector<std::pair<int, edge>> Graph::get_G(){
 }
 
 void Graph::Kruskal() {
+	int a, b;
     sort(G.begin(), G.end());
     for (auto i : G) {
-        int a = find_set(i.second.first);
-        int b = find_set(i.second.second);
+        a = find_set(i.second.first);
+        b = find_set(i.second.second);
         if (a != b) {
             MST.emplace_back(i);
             union_set(a, b);
         }
     }
 }
+
 void Graph::printMST() {
     for (int i = 0; i < MST.size(); i++) {
         cout << "( " << MST[i].second.first << " - " << MST[i].second.second << " ) : " << MST[i].first << '\n';

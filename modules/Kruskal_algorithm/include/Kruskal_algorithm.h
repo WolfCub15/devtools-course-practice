@@ -3,9 +3,11 @@
 #ifndef MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
 #define MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
 
+#include <utility>
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
 typedef std::pair<int, int> edge;
 
