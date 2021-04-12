@@ -2,8 +2,14 @@
 
 #include "include/Kruskal_algorithm.h"
 
-Graph::Graph(int size) {
-	n = size;
+Graph::Graph() : n(0) {
+    G.clear();
+    MST.clear();
+    parent.resize(0);
+}
+
+Graph::Graph(const int size = 0) {
+    n = size;
     parent.resize(n,0);
     G.clear();
     MST.clear();
@@ -12,7 +18,26 @@ Graph::Graph(int size) {
     }
 }
 
-void Graph::addEdge(int x, int y, int w) {
+Graph::Graph(const Graph& tmp) : n(tmp.get_n()),
+                                 G(tmp.get_G()),
+								 MST(tmp.get_MST()),
+								 parent(tmp.get_parent()) {}
+
+Graph& Graph::operator=(const Graph& tmp) {
+    n = tmp.get_n();
+	G = tmp.get_G();
+	MST = tmp.get_MST();
+	parent = tmp.get_parent();
+	return *this;
+}
+
+Graph::~Graph() {
+    parent.clear();
+	G.clear();
+    MST.clear();
+}
+
+void Graph::addEdge(const int x, const int y, const int w) {
     G.emplace_back(make_pair(w, edge(x, y)));
 }
 
@@ -32,24 +57,24 @@ void Graph::union_set(int a, int b) {
     if(a != b) parent[a] = parent[b];
 }
 
-int Graph::get_n(){
+int Graph::get_n() const {
     return n;
 }
 
-std::vector<int> Graph::get_parent(){
+std::vector<int> Graph::get_parent() const {
     return parent;
 }
 
-std::vector<std::pair<int, edge>> Graph::get_MST(){
+std::vector<std::pair<int, edge>> Graph::get_MST() const {
     return MST;
 }
 
-std::vector<std::pair<int, edge>> Graph::get_G(){
+std::vector<std::pair<int, edge>> Graph::get_G() const {
     return G;
 }
 
 void Graph::Kruskal() {
-	int a, b;
+    int a, b;
     sort(G.begin(), G.end());
     for (auto i : G) {
         a = find_set(i.second.first);
@@ -66,4 +91,3 @@ void Graph::printMST() {
         cout << "( " << MST[i].second.first << " - " << MST[i].second.second << " ) : " << MST[i].first << '\n';
     }
 }
-

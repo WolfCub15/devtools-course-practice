@@ -18,15 +18,19 @@ private:
     std::vector<std::pair<int, edge>> MST;
     std::vector<int> parent;
 public:
-    Graph(int n);
-    void addEdge(int x, int y, int w);
+    Graph();
+    Graph(const int n);
+	Graph(const Graph& tmp);
+	Graph& operator=(const Graph& tmp);
+    ~Graph();
+    void addEdge(const int x, const int y, const int w);
     void Kruskal();
     void printMST();
-	int get_n();
-    std::vector<std::pair<int, edge>> get_G();
-	std::vector<std::pair<int, edge>> get_MST();
-	std::vector<int> get_parent();
-	void make_set(int x);
+    int get_n() const;
+    std::vector<std::pair<int, edge>> get_G() const;
+    std::vector<std::pair<int, edge>> get_MST() const;
+    std::vector<int> get_parent() const;
+    void make_set(int x);
     int find_set(int i);
     void union_set(int a, int b);
 };
