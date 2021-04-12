@@ -20,20 +20,20 @@ Graph::Graph(const int size) {
 
 Graph::Graph(const Graph& tmp) : n(tmp.get_n()),
                                  G(tmp.get_G()),
-								 MST(tmp.get_MST()),
-								 parent(tmp.get_parent()) {}
+                                 MST(tmp.get_MST()),
+                                 parent(tmp.get_parent()) {}
 
 Graph& Graph::operator=(const Graph& tmp) {
     n = tmp.get_n();
-	G = tmp.get_G();
-	MST = tmp.get_MST();
-	parent = tmp.get_parent();
-	return *this;
+    G = tmp.get_G();
+    MST = tmp.get_MST();
+    parent = tmp.get_parent();
+    return *this;
 }
 
 Graph::~Graph() {
     parent.clear();
-	G.clear();
+    G.clear();
     MST.clear();
 }
 
