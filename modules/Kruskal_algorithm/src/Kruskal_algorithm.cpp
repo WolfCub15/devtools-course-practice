@@ -67,7 +67,7 @@ const std::vector<std::pair<int, edge>>& Graph::get_G() const {
 }
 
 void Graph::Kruskal() {
-	int a, b;
+    int a, b;
     sort(G.begin(), G.end());
     for (auto i : G) {
         a = find_set(i.second.first);
