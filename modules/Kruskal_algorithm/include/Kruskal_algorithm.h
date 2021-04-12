@@ -17,6 +17,9 @@ private:
     std::vector<std::pair<int, edge>> G;
     std::vector<std::pair<int, edge>> MST;
     std::vector<int> parent;
+	void make_set(int x);
+    int find_set(int i);
+    void union_set(int a, int b);
 public:
     Graph();
     Graph(const int n);
@@ -30,9 +33,6 @@ public:
     std::vector<std::pair<int, edge>> get_G() const;
     std::vector<std::pair<int, edge>> get_MST() const;
     std::vector<int> get_parent() const;
-    void make_set(int x);
-    int find_set(int i);
-    void union_set(int a, int b);
 };
 
 #endif  // MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_

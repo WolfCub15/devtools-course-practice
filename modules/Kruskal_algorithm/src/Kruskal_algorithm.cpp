@@ -8,7 +8,7 @@ Graph::Graph() : n(0) {
     parent.resize(0);
 }
 
-Graph::Graph(const int size = 0) {
+Graph::Graph(const int size) {
     n = size;
     parent.resize(n,0);
     G.clear();
