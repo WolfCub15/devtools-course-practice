@@ -11,10 +11,10 @@
 TEST(Kruskal_algorithm, Сonstructor) {
     Graph g;
 
-    ASSERT_EQ(0, g.get_n());
-    ASSERT_EQ(0, g.get_parent().size());
-    ASSERT_EQ(0, g.get_G().size());
-    ASSERT_EQ(0, g.get_MST().size());
+    ASSERT_EQ(0, static_cast<int>(g.get_n()));
+    ASSERT_EQ(0, static_cast<int>(g.get_parent().size()));
+    ASSERT_EQ(0, static_cast<int>(g.get_G().size()));
+    ASSERT_EQ(0, static_cast<int>(g.get_MST().size()));
 }
 
 TEST(Kruskal_algorithm, TheNumberOfVertices) {
@@ -91,7 +91,7 @@ TEST(Kruskal_algorithm, TheNumberOfEdges) {
     g.addEdge(2, 3, 3);
     std::vector<std::pair<int, edge>> gr = g.get_G();
 
-    ASSERT_EQ(4, gr.size());
+    ASSERT_EQ(4, static_cast<int>(gr.size()));
 }
 
 TEST(Kruskal_algorithm, KruskalAlgorithmN5) {
