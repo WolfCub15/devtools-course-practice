@@ -49,7 +49,7 @@ int Graph::find_set(int i) {
     if (i == parent[i]) return i;
     return parent[i] = find_set(parent[i]);
 }
- 
+
 void Graph::union_set(int a, int b) {
     a = find_set(a);
     b = find_set(b);

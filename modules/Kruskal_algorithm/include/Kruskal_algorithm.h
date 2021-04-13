@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 using namespace std;
 
 typedef std::pair<int, int> edge;
@@ -17,14 +18,14 @@ private:
     std::vector<std::pair<int, edge>> G;
     std::vector<std::pair<int, edge>> MST;
     std::vector<int> parent;
-	void make_set(int x);
+    void make_set(int x);
     int find_set(int i);
     void union_set(int a, int b);
 public:
     Graph();
     Graph(const int n);
-	Graph(const Graph& tmp);
-	Graph& operator=(const Graph& tmp);
+    Graph(const Graph& tmp);
+    Graph& operator=(const Graph& tmp);
     ~Graph();
     void addEdge(const int x, const int y, const int w);
     void Kruskal();
