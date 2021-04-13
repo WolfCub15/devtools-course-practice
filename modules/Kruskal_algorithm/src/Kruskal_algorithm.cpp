@@ -88,6 +88,8 @@ void Graph::Kruskal() {
 
 void Graph::printMST() {
     for (int i = 0; i < MST.size(); i++) {
-        cout << "( " << MST[i].second.first << " - " << MST[i].second.second << " ) : " << MST[i].first << '\n';
+        cout << "( " << MST[i].second.first <<
+        " - " << MST[i].second.second <<
+        " ) : " << MST[i].first << '\n';
     }
 }
