@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 typedef std::pair<int, int> edge;
 
@@ -16,18 +17,18 @@ class Graph{
     std::vector<std::pair<int, edge>> G;
     std::vector<std::pair<int, edge>> MST;
     std::vector<int> parent;
-    void make_set(int x);
-    int find_set(int i);
+    int find_set(int vertex);
     void union_set(int a, int b);
+    std::mt19937 gen;
  public:
-    Graph();
-    explicit Graph(const int n);
+    explicit Graph(const int n = 0);
     Graph(const Graph& tmp);
     Graph& operator=(const Graph& tmp);
-    ~Graph();
+    ~Graph() = default;
     void addEdge(const int x, const int y, const int w);
     void Kruskal();
     void printMST();
+    void set_n(const int vertex_n);
     int get_n() const;
     std::vector<std::pair<int, edge>> get_G() const;
     std::vector<std::pair<int, edge>> get_MST() const;

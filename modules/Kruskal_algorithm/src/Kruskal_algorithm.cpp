@@ -5,31 +5,23 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <numeric>
 
 #include "include/Kruskal_algorithm.h"
-
-Graph::Graph() : n(0) {
-    G.clear();
-    MST.clear();
-    parent.resize(0);
-}
 
 Graph::Graph(const int size) {
     n = size;
     parent.resize(n, 0);
-    G.clear();
-    MST.clear();
-    for (int i = 0; i < n; ++i) {
-        make_set(i);
-    }
+    std::iota(parent.begin(), parent.end(), 0);
 }
 
-Graph::Graph(const Graph& tmp) : n(tmp.get_n()),
-                                 G(tmp.get_G()),
-                                 MST(tmp.get_MST()),
-                                 parent(tmp.get_parent()) {}
+Graph::Graph(const Graph& tmp) : n(tmp.n),
+                                 G(tmp.G),
+                                 MST(tmp.MST),
+                                 parent(tmp.parent) {}
 
 Graph& Graph::operator=(const Graph& tmp) {
+    if (this == &tmp) return *this;
     n = tmp.get_n();
     G = tmp.get_G();
     MST = tmp.get_MST();
@@ -37,32 +29,25 @@ Graph& Graph::operator=(const Graph& tmp) {
     return *this;
 }
 
-Graph::~Graph() {
-    parent.clear();
-    G.clear();
-    MST.clear();
-}
-
 void Graph::addEdge(const int x, const int y, const int w) {
     G.emplace_back(make_pair(w, edge(x, y)));
 }
 
-void Graph::make_set(int x) {
-    parent[x] = x;
-}
-
-int Graph::find_set(int i) {
-    if (i == parent[i]) return i;
-    return parent[i] = find_set(parent[i]);
+int Graph::find_set(int vertex) {
+    if (vertex == parent[vertex]) return vertex;
+    return parent[vertex] = find_set(parent[vertex]);
 }
 
 void Graph::union_set(int a, int b) {
     a = find_set(a);
     b = find_set(b);
-    std::mt19937 gen;
     gen.seed(time(0));
     if (gen() & 1) std::swap(a, b);
     if (a != b) parent[a] = parent[b];
+}
+
+void Graph::set_n(const int vertex_n){
+    n = vertex_n;
 }
 
 int Graph::get_n() const {

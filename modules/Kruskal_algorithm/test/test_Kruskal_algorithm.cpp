@@ -10,7 +10,7 @@
 TEST(Volkova_Kruskal_Algorithm, Constructor) {
     Graph g;
 
-    ASSERT_EQ(0, static_cast<int>(g.get_n()));
+    ASSERT_EQ(0, g.get_n());
     ASSERT_EQ(0, static_cast<int>(g.get_parent().size()));
     ASSERT_EQ(0, static_cast<int>(g.get_G().size()));
     ASSERT_EQ(0, static_cast<int>(g.get_MST().size()));
@@ -20,6 +20,13 @@ TEST(Volkova_Kruskal_Algorithm, TheNumberOfVertices) {
     Graph g(10);
 
     ASSERT_EQ(10, g.get_n());
+}
+
+TEST(Volkova_Kruskal_Algorithm, SetNumberOfVertices) {
+    Graph g(10);
+    g.set_n(4);
+
+    ASSERT_EQ(4, g.get_n());
 }
 
 TEST(Volkova_Kruskal_Algorithm, CopyConstructor) {
@@ -73,13 +80,20 @@ TEST(Volkova_Kruskal_Algorithm, AddEdgeToGraph) {
     ASSERT_EQ(10, w);
 }
 
-TEST(Volkova_Kruskal_Algorithm, ParentMakeSet) {
+TEST(Volkova_Kruskal_Algorithm, Parent) {
     Graph g(10);
     std::vector<int> p = g.get_parent();
 
     for (int i = 0; i < 10; ++i) {
         ASSERT_EQ(i, p[i]);
     }
+}
+
+TEST(Volkova_Kruskal_Algorithm, ParentSize) {
+    Graph g(6);
+    std::vector<int> p = g.get_parent();
+
+    ASSERT_EQ(6, static_cast<int>(p.size()));
 }
 
 TEST(Volkova_Kruskal_Algorithm, TheNumberOfEdges) {
@@ -155,4 +169,24 @@ TEST(Volkova_Kruskal_Algorithm, TheMinimumSpanningTreeVerification) {
     std::vector<std::pair<int, edge>> mst = g.get_MST();
 
     ASSERT_EQ(gr, mst);
+}
+
+TEST(Volkova_Kruskal_Algorithm, MSTForTwoIdenticalTrees) {
+    Graph g1(4);
+    g1.addEdge(0, 1, 14);
+    g1.addEdge(0, 3, 12);
+    g1.addEdge(1, 3, 14);
+    g1.addEdge(2, 3, 16);
+    g1.Kruskal();
+    std::vector<std::pair<int, edge>> mst1 = g1.get_MST();
+
+    Graph g2(4);
+    g2.addEdge(2, 3, 16);
+    g2.addEdge(0, 3, 12);
+    g2.addEdge(0, 1, 14);
+    g2.addEdge(1, 3, 14);
+    g2.Kruskal();
+    std::vector<std::pair<int, edge>> mst2 = g2.get_MST();
+
+    ASSERT_EQ(mst1, mst2);
 }
