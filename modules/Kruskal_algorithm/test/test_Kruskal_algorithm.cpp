@@ -7,8 +7,7 @@
 
 #include "include/Kruskal_algorithm.h"
 
-
-TEST(Kruskal_algorithm, Сonstructor) {
+TEST(Volkova_Kruskal_Algorithm, Constructor) {
     Graph g;
 
     ASSERT_EQ(0, static_cast<int>(g.get_n()));
@@ -17,13 +16,13 @@ TEST(Kruskal_algorithm, Сonstructor) {
     ASSERT_EQ(0, static_cast<int>(g.get_MST().size()));
 }
 
-TEST(Kruskal_algorithm, TheNumberOfVertices) {
+TEST(Volkova_Kruskal_Algorithm, TheNumberOfVertices) {
     Graph g(10);
 
     ASSERT_EQ(10, g.get_n());
 }
 
-TEST(Kruskal_algorithm, CopyConstructor) {
+TEST(Volkova_Kruskal_Algorithm, CopyConstructor) {
     Graph g(5);
     g.addEdge(0, 1, 3);
     g.addEdge(0, 2, 1);
@@ -42,7 +41,7 @@ TEST(Kruskal_algorithm, CopyConstructor) {
     ASSERT_EQ(g.get_parent(), g_copy.get_parent());
 }
 
-TEST(Kruskal_algorithm, AssignmentOperator) {
+TEST(Volkova_Kruskal_Algorithm, AssignmentOperator) {
     Graph g(5);
     g.addEdge(0, 1, 3);
     g.addEdge(0, 2, 1);
@@ -61,7 +60,7 @@ TEST(Kruskal_algorithm, AssignmentOperator) {
     ASSERT_EQ(g.get_parent(), g_copy.get_parent());
 }
 
-TEST(Kruskal_algorithm, AddEdgeToGraph) {
+TEST(Volkova_Kruskal_Algorithm, AddEdgeToGraph) {
     Graph g(2);
     g.addEdge(0, 1, 10);
     std::vector<std::pair<int, edge>> gr = g.get_G();
@@ -74,7 +73,7 @@ TEST(Kruskal_algorithm, AddEdgeToGraph) {
     ASSERT_EQ(10, w);
 }
 
-TEST(Kruskal_algorithm, ParentMakeSet) {
+TEST(Volkova_Kruskal_Algorithm, ParentMakeSet) {
     Graph g(10);
     std::vector<int> p = g.get_parent();
 
@@ -83,7 +82,7 @@ TEST(Kruskal_algorithm, ParentMakeSet) {
     }
 }
 
-TEST(Kruskal_algorithm, TheNumberOfEdges) {
+TEST(Volkova_Kruskal_Algorithm, TheNumberOfEdges) {
     Graph g(4);
     g.addEdge(0, 1, 2);
     g.addEdge(0, 3, 1);
@@ -94,7 +93,7 @@ TEST(Kruskal_algorithm, TheNumberOfEdges) {
     ASSERT_EQ(4, static_cast<int>(gr.size()));
 }
 
-TEST(Kruskal_algorithm, KruskalAlgorithmN5) {
+TEST(Volkova_Kruskal_Algorithm, KruskalAlgorithmN5) {
     Graph g(5);
     g.addEdge(0, 3, 5);
     g.addEdge(0, 1, 1);
@@ -124,7 +123,7 @@ TEST(Kruskal_algorithm, KruskalAlgorithmN5) {
     ASSERT_EQ(3, mst[3].first);
 }
 
-TEST(Kruskal_algorithm, KruskalAlgorithmN4) {
+TEST(Volkova_Kruskal_Algorithm, KruskalAlgorithmN4) {
     Graph g(4);
     g.addEdge(0, 1, 2);
     g.addEdge(0, 3, 1);
@@ -146,7 +145,7 @@ TEST(Kruskal_algorithm, KruskalAlgorithmN4) {
     ASSERT_EQ(3, mst[2].first);
 }
 
-TEST(Kruskal_algorithm, TheMinimumSpanningTreeVerification) {
+TEST(Volkova_Kruskal_Algorithm, TheMinimumSpanningTreeVerification) {
     Graph g(4);
     g.addEdge(0, 3, 1);
     g.addEdge(0, 1, 2);
