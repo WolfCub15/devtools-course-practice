@@ -46,7 +46,7 @@ void Graph::union_set(int a, int b) {
     if (a != b) parent[a] = parent[b];
 }
 
-void Graph::set_n(const int vertex_n){
+void Graph::set_n(const int vertex_n) {
     n = vertex_n;
 }
 
