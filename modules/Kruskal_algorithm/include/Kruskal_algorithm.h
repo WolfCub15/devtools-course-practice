@@ -8,12 +8,10 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
-
 typedef std::pair<int, int> edge;
 
 class Graph{
-private:
+ private:
     int n;
     std::vector<std::pair<int, edge>> G;
     std::vector<std::pair<int, edge>> MST;
@@ -21,9 +19,9 @@ private:
     void make_set(int x);
     int find_set(int i);
     void union_set(int a, int b);
-public:
+ public:
     Graph();
-    Graph(const int n);
+    explicit Graph(const int n);
     Graph(const Graph& tmp);
     Graph& operator=(const Graph& tmp);
     ~Graph();

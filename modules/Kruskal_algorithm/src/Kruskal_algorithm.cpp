@@ -61,7 +61,7 @@ void Graph::union_set(int a, int b) {
     b = find_set(b);
     std::mt19937 gen;
     gen.seed(time(0));
-    if (gen() & 1) swap(a, b);
+    if (gen() & 1) std::swap(a, b);
     if (a != b) parent[a] = parent[b];
 }
 
@@ -96,7 +96,7 @@ void Graph::Kruskal() {
 
 void Graph::printMST() {
     for (int i = 0; i < MST.size(); i++) {
-        cout << "( " << MST[i].second.first <<
+        std::cout << "( " << MST[i].second.first <<
         " - " << MST[i].second.second <<
         " ) : " << MST[i].first << '\n';
     }
