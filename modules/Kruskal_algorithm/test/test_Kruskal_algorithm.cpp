@@ -2,6 +2,9 @@
 
 #include <gtest/gtest.h>
 #include <tuple>
+#include <utility>
+#include <vector>
+
 #include "include/Kruskal_algorithm.h"
 
 
@@ -75,7 +78,7 @@ TEST(Kruskal_algorithm, ParentMakeSet) {
     Graph g(10);
     std::vector<int> p = g.get_parent();
 
-    for(int i = 0; i < 10; ++i){
+    for (int i = 0; i < 10; ++i) {
         ASSERT_EQ(i, p[i]);
     }
 }
