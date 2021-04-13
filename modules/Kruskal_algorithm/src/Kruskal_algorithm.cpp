@@ -1,5 +1,11 @@
 // Copyright 2021 Volkova Anastasia
 
+#include <utility>
+#include <algorithm>
+#include <vector>
+#include <random>
+#include <ctime>
+
 #include "include/Kruskal_algorithm.h"
 
 Graph::Graph() : n(0) {
@@ -10,7 +16,7 @@ Graph::Graph() : n(0) {
 
 Graph::Graph(const int size) {
     n = size;
-    parent.resize(n,0);
+    parent.resize(n, 0);
     G.clear();
     MST.clear();
     for (int i = 0; i < n; ++i) {
@@ -53,8 +59,10 @@ int Graph::find_set(int i) {
 void Graph::union_set(int a, int b) {
     a = find_set(a);
     b = find_set(b);
-    if(rand() & 1) swap(a,b);
-    if(a != b) parent[a] = parent[b];
+    std::mt19937 gen;
+    gen.seed(time(0));
+    if (gen() & 1) swap(a, b);
+    if (a != b) parent[a] = parent[b];
 }
 
 int Graph::get_n() const {
