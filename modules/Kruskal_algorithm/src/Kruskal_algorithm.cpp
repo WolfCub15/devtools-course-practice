@@ -1,16 +1,15 @@
 // Copyright 2021 Volkova Anastasia
 
-#include <utility>
 #include <algorithm>
-#include <vector>
-#include <random>
 #include <ctime>
 #include <numeric>
+#include <random>
+#include <utility>
+#include <vector>
 
 #include "include/Kruskal_algorithm.h"
 
-Graph::Graph(const int size) {
-    n = size;
+Graph::Graph(const int size) : n(size) {
     parent.resize(n, 0);
     std::iota(parent.begin(), parent.end(), 0);
 }
@@ -35,7 +34,8 @@ void Graph::addEdge(const int x, const int y, const int w) {
 
 int Graph::find_set(int vertex) {
     if (vertex == parent[vertex]) return vertex;
-    return parent[vertex] = find_set(parent[vertex]);
+    parent[vertex] = find_set(parent[vertex]);
+    return parent[vertex];
 }
 
 void Graph::union_set(int a, int b) {
@@ -47,22 +47,22 @@ void Graph::union_set(int a, int b) {
 }
 
 void Graph::set_n(const int vertex_n) {
-    n = vertex_n;
+    if (vertex_n >= 0) n = vertex_n;
 }
 
 int Graph::get_n() const {
     return n;
 }
 
-std::vector<int> Graph::get_parent() const {
+const std::vector<int>& Graph::get_parent() const {
     return parent;
 }
 
-std::vector<std::pair<int, edge>> Graph::get_MST() const {
+const std::vector<std::pair<int, edge>>& Graph::get_MST() const {
     return MST;
 }
 
-std::vector<std::pair<int, edge>> Graph::get_G() const {
+const std::vector<std::pair<int, edge>>& Graph::get_G() const {
     return G;
 }
 

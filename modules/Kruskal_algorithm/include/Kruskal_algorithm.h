@@ -30,9 +30,9 @@ class Graph{
     void printMST();
     void set_n(const int vertex_n);
     int get_n() const;
-    std::vector<std::pair<int, edge>> get_G() const;
-    std::vector<std::pair<int, edge>> get_MST() const;
-    std::vector<int> get_parent() const;
+    const std::vector<std::pair<int, edge>>& get_G() const;
+    const std::vector<std::pair<int, edge>>& get_MST() const;
+    const std::vector<int>& get_parent() const;
 };
 
 #endif  // MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
