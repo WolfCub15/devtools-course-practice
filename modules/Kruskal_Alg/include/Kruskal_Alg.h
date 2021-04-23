@@ -1,7 +1,7 @@
 // Copyright 2021 Volkova Anastasia
 
-#ifndef MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
-#define MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
+#ifndef MODULES_KRUSKAL_ALG_INCLUDE_KRUSKAL_ALG_H_
+#define MODULES_KRUSKAL_ALG_INCLUDE_KRUSKAL_ALG_H_
 
 #include <utility>
 #include <iostream>
@@ -34,4 +34,4 @@ class Graph{
     const std::vector<int>& get_parent() const;
 };
 
-#endif  // MODULES_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_ALGORITHM_H_
+#endif  // MODULES_KRUSKAL_ALG_INCLUDE_KRUSKAL_ALG_H_

@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-#include "include/Kruskal_algorithm.h"
+#include "include/Kruskal_Alg.h"
 
 TEST(Volkova_Kruskal_Algorithm, Constructor) {
     Graph g;

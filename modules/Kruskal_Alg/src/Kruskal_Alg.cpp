@@ -7,7 +7,7 @@
 #include <utility>
 #include <vector>
 
-#include "include/Kruskal_algorithm.h"
+#include "include/Kruskal_Alg.h"
 
 Graph::Graph(const int size) : n(size) {
     parent.resize(n, 0);
