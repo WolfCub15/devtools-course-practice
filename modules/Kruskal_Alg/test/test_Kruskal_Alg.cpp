@@ -67,6 +67,27 @@ TEST(Volkova_Kruskal_Algorithm, AssignmentOperator) {
     ASSERT_EQ(g.get_parent(), g_copy.get_parent());
 }
 
+TEST(Volkova_Kruskal_Algorithm, AssignmentOperator2) {
+    Graph g(5);
+    g.addEdge(0, 1, 3);
+    g.addEdge(0, 2, 1);
+    g.addEdge(0, 3, 5);
+    g.addEdge(1, 2, 2);
+    g.addEdge(1, 4, 3);
+    g.addEdge(2, 3, 2);
+    g.addEdge(3, 4, 4);
+    g.Kruskal();
+
+    Graph g_copy(5);
+    g_copy.addEdge(0, 1, 3);
+    g_copy = g;
+
+    ASSERT_EQ(g.get_n(), g_copy.get_n());
+    ASSERT_EQ(g.get_G(), g_copy.get_G());
+    ASSERT_EQ(g.get_MST(), g_copy.get_MST());
+    ASSERT_EQ(g.get_parent(), g_copy.get_parent());
+}
+
 TEST(Volkova_Kruskal_Algorithm, SelfAppropriation) {
     Graph g(5);
     g.addEdge(0, 1, 3);
