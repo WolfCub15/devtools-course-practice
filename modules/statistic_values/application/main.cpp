@@ -1,4 +1,4 @@
-// Copyright 2017 Korniakov Kirill
+// Copyright 2021 Volkova Anastasia
 
 #include <iostream>
 #include <string>
