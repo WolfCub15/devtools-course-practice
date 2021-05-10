@@ -100,19 +100,19 @@ std::string Application::operator()(int argc, const char** argv) {
     try {
         args.n = parseInt(argv[1]);
         if (argc == (args.n * 2 + 4)) {
-            for(int i = 0; i < args.n; ++i){
+            for (int i = 0; i < args.n; ++i) {
                 args.x.emplace_back(parseDouble(argv[i + 2]));
             }
-            for(int i = 0; i < args.n; ++i) {
+            for (int i = 0; i < args.n; ++i) {
                 args.p.emplace_back(parseDouble(argv[args.n + i + 2]));
             }
             args.k = parseInt(argv[args.n * 2 + 2]);
             args.operation = parseOperation(argv[args.n * 2 + 3]);
         } else {
-            for(int i = 0; i < args.n; ++i) {
+            for (int i = 0; i < args.n; ++i) {
                 args.x.emplace_back(parseDouble(argv[i + 2]));
             }
-            for(int i = 0; i < args.n; ++i) {
+            for (int i = 0; i < args.n; ++i) {
                 args.p.emplace_back(parseDouble(argv[args.n + i + 2]));
             }
             args.operation = parseOperation(argv[args.n * 2 + 2]);
