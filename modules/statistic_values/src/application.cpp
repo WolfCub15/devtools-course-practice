@@ -5,6 +5,8 @@
 #include <cstring>
 #include <sstream>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 #include "include/statistic_values.h"
 
@@ -19,9 +21,11 @@ void Application::help(const char* appname, const char* message) {
           "  $ " + appname + " <n> <x> <p> <k>" +
           "<operation>\n\n" +
 
-          "Where the first integer type (size), then arrays of double numbers," +
+          "Where the first integer type (size)," +
+          "then arrays of double numbers," +
           "then integer type (power)," +
-          "and <operation> is one of 'meanValue', 'variance', 'start', 'centr'.\n";
+          "and <operation> is one of" +
+          "'meanValue', 'variance', 'start', 'centr'.\n";
 }
 
 bool isInt(std::string str) {
@@ -34,7 +38,7 @@ bool isInt(std::string str) {
 }
 
 int parseInt(const char* arg) {
-    if (!isInt(arg)){
+    if (!isInt(arg)) {
         throw std::string("Wrong number format!");
     }
     int value = std::stoi(arg);
@@ -49,7 +53,7 @@ bool Application::validateNumberOfArguments(int argc, const char** argv) {
     }
     int value = parseInt(argv[1]);
     int count = value * 2 + 3;
-    if (argc == count || argc == (count + 1)){
+    if (argc == count || argc == (count + 1)) {
         return true;
     }
     help(argv[0], "ERROR: wrong number of arguments.\n\n");
@@ -92,28 +96,27 @@ std::string Application::operator()(int argc, const char** argv) {
     if (!validateNumberOfArguments(argc, argv)) {
         return message_;
     }
-    
+
     try {
         args.n = parseInt(argv[1]);
-        if (argc == (args.n * 2 + 4)){
+        if (argc == (args.n * 2 + 4)) {
             for(int i = 0; i < args.n; ++i){
                 args.x.emplace_back(parseDouble(argv[i + 2]));
             }
-            for(int i = 0; i < args.n; ++i){
+            for(int i = 0; i < args.n; ++i) {
                 args.p.emplace_back(parseDouble(argv[args.n + i + 2]));
             }
             args.k = parseInt(argv[args.n * 2 + 2]);
             args.operation = parseOperation(argv[args.n * 2 + 3]);
         } else {
-            for(int i = 0; i < args.n; ++i){
+            for(int i = 0; i < args.n; ++i) {
                 args.x.emplace_back(parseDouble(argv[i + 2]));
             }
-            for(int i = 0; i < args.n; ++i){
+            for(int i = 0; i < args.n; ++i) {
                 args.p.emplace_back(parseDouble(argv[args.n + i + 2]));
             }
             args.operation = parseOperation(argv[args.n * 2 + 2]);
         }
-        
     }
     catch(std::string& str) {
         return str;
@@ -124,10 +127,9 @@ std::string Application::operator()(int argc, const char** argv) {
     int n = args.n;
 
     std::ostringstream stream;
-    switch (args.operation)
-    {
+    switch (args.operation) {
     case 'm':
-        stream << "Mathematical expectation = " << statValues::meanValue(x, p, n);
+        stream << "Mat. expectation = " << statValues::meanValue(x, p, n);
         break;
     case 'v':
         stream << "Dispersion = " << statValues::variance(x, p, n);
