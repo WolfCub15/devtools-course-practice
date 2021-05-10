@@ -29,6 +29,14 @@ set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
     LABELS "${MODULE}")
 
 add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format_Int
+    COMMAND ${APPLICATION} 3 2 1 1 2 3 4 i start
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format_Int PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
     NAME ${prefix}_can_Detect_Wrong_Number_Format
     COMMAND ${APPLICATION} 3 2 1 ip 2 3 4 5 start
 )
