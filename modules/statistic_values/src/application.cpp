@@ -7,7 +7,6 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <exception>
 
 #include "include/statistic_values.h"
 
