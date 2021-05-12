@@ -29,18 +29,11 @@ void Application::help(const char* appname, const char* message) {
           "'meanValue', 'variance', 'start', 'centr'.\n";
 }
 
-bool isInt(const std::string& str) {
-    for (size_t i = 0; i < str.size(); ++i) {
-        if (str[i] < '0' || str[i] > '9') {
-            return false;
-        }
-    }
-    return true;
-}
-
 int parseInt(const char* arg) {
-    if (!isInt(arg)) {
+    for (int i = 0; i < arg[i] != '\0'; ++i) {
+        if (arg[i] < '0' || arg[i] > '9') {
         throw std::string("Wrong number format!");
+        }
     }
     return std::stoi(arg);
 }
