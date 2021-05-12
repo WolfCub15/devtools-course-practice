@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <exception>
 
 #include "include/statistic_values.h"
 
@@ -28,11 +29,18 @@ void Application::help(const char* appname, const char* message) {
           "'meanValue', 'variance', 'start', 'centr'.\n";
 }
 
-int parseInt(const char* arg) {
-    for (int i = 0; i < arg[i] != '\0'; ++i) {
-        if (arg[i] < '0' || arg[i] > '9') {
-            throw std::runtime_error("Wrong number format!");
+bool isInt(const std::string& str) {
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (str[i] < '0' || str[i] > '9') {
+            return false;
         }
+    }
+    return true;
+}
+
+int parseInt(const char* arg) {
+    if (!isInt(arg)) {
+        throw std::string("Wrong number format!");
     }
     return std::stoi(arg);
 }
@@ -56,7 +64,7 @@ double parseDouble(const char* arg) {
     double value = strtod(arg, &end);
 
     if (end[0]) {
-        throw std::runtime_error("Wrong number format!");
+        throw std::string("Wrong number format!");
     }
 
     return value;
@@ -73,7 +81,7 @@ char parseOperation(const char* arg) {
     } else if (strcmp(arg, "centr") == 0) {
         op = 'c';
     } else {
-        throw std::runtime_error("Wrong operation format!");
+        throw std::string("Wrong operation format!");
     }
     return op;
 }
@@ -110,8 +118,8 @@ std::string Application::operator()(int argc, const char** argv) {
             args.operation = parseOperation(argv[args.n * 2 + 2]);
         }
     }
-    catch(std::exception& str) {
-        return str.what();
+    catch(std::string& str) {
+        return str;
     }
 
     vector<double> x = args.x;
