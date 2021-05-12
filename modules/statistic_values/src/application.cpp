@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <exception>
 
 #include "include/statistic_values.h"
 
@@ -28,22 +29,13 @@ void Application::help(const char* appname, const char* message) {
           "'meanValue', 'variance', 'start', 'centr'.\n";
 }
 
-bool isInt(std::string str) {
-    for (size_t i = 0; i < str.size(); ++i) {
-        if (str[i] < '0' || str[i] > '9') {
-            return false;
+int parseInt(const char* arg) {
+    for (int i = 0; i < arg[i] != '\0'; ++i) {
+        if (arg[i] < '0' || arg[i] > '9') {
+            throw std::runtime_error("Wrong number format!");
         }
     }
-    return true;
-}
-
-int parseInt(const char* arg) {
-    if (!isInt(arg)) {
-        throw std::string("Wrong number format!");
-    }
-    int value = std::stoi(arg);
-
-    return value;
+    return std::stoi(arg);
 }
 
 bool Application::validateNumberOfArguments(int argc, const char** argv) {
@@ -65,7 +57,7 @@ double parseDouble(const char* arg) {
     double value = strtod(arg, &end);
 
     if (end[0]) {
-        throw std::string("Wrong number format!");
+        throw std::runtime_error("Wrong number format!");
     }
 
     return value;
@@ -82,7 +74,7 @@ char parseOperation(const char* arg) {
     } else if (strcmp(arg, "centr") == 0) {
         op = 'c';
     } else {
-        throw std::string("Wrong operation format!");
+        throw std::runtime_error("Wrong operation format!");
     }
     return op;
 }
@@ -92,13 +84,14 @@ std::string Application::operator()(int argc, const char** argv) {
 
     args.p.clear();
     args.x.clear();
-
     if (!validateNumberOfArguments(argc, argv)) {
         return message_;
     }
 
     try {
         args.n = parseInt(argv[1]);
+        args.x.reserve(args.n);
+        args.p.reserve(args.n);
         if (argc == (args.n * 2 + 4)) {
             for (int i = 0; i < args.n; ++i) {
                 args.x.emplace_back(parseDouble(argv[i + 2]));
@@ -118,8 +111,8 @@ std::string Application::operator()(int argc, const char** argv) {
             args.operation = parseOperation(argv[args.n * 2 + 2]);
         }
     }
-    catch(std::string& str) {
-        return str;
+    catch(std::exception& str) {
+        return str.what();
     }
 
     vector<double> x = args.x;
