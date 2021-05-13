@@ -83,3 +83,11 @@ add_test(
 set_tests_properties (${prefix}_can_Centr PROPERTIES
     PASS_REGULAR_EXPRESSION "Central moment = -7.992"
     LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Mean_Value_Double
+    COMMAND ${APPLICATION} 6 5.1 4.2 1.1 2.1 6.3 4.4 0.1 0.1 0.1 0.4 0.2 0.1 meanValue
+)
+set_tests_properties (${prefix}_can_Mean_Value_Double PROPERTIES
+    PASS_REGULAR_EXPRESSION "Mat. expectation = 3.58"
+    LABELS "${MODULE}")
